@@ -430,10 +430,10 @@ static RegisterPass<Mem2RegPass> X("mem2reg-custom", "Custom Memory to Register 
 
 **若v不是w的祖先**
 
-- 由于v < w，当DFS访问完v的整个子树后，才会访问到w
+- v不是w的祖先，那一定不存在v→w且中间节点递增的这种路径。由于v < w，当DFS访问完v的整个子树后，经过回溯才会访问到w
 - 这意味着v和w在DFS树中处于不同的子树
-- 任何从v到w的路径都必须"跳出"v所在的子树，然后"进入"w所在的子树。这个前提就是v不是w祖先。
-- 根据DFS树的性质，这样的路径必须经过lca(v,w)
+- v不是w祖先，那任何从v到w的路径都必须"跳出"v所在的子树，然后"进入"w所在的子树。
+- 这样的路径必须经过lca(v,w)
 
 
 
