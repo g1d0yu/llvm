@@ -285,13 +285,7 @@ end:
 
 ![image-20250707092923931](./assets/image-20250707092923931.png)
 
-我们发现，ir中是alloca这种内存形式，而不是文章中所说的phi形式，这是怎么一回事呢？原来alloca这种内存变量还要经过一个叫mem2reg的pass进行优化才可以变成phi形式，这个pass是llvm自带的，我们直接用opt加载发现没有输出，优化前后结果也不变。我参考的文章中构建llvm使用的选项是-DCMAKE_BUILD_TYPE=Release
-
-![image-20250707113152714](./assets/image-20250707113152714.png)
-
-而排除了一些列原因后，GPT说是构建过程中没有配置LLVM_ENABLE_ASSERTIONS=ON
-
-![image-20250707113641135](./assets/image-20250707113641135.png)
+我们发现，ir中是alloca这种内存形式，而不是文章中所说的phi形式，这是怎么一回事呢？原来alloca这种内存变量还要经过一个叫mem2reg的pass进行优化才可以变成phi形式，这个pass是llvm自带的，我们直接用opt加载发现没有输出，优化前后结果也不变。
 
 然后让ai想想办法，claudei告诉我们可以自己实现一个mem2reg
 
